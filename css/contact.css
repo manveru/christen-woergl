@@ -1,12 +1,12 @@
 @import "main";
 
-header nav {
-  background: rgba(0, 0, 0, 0.7);
+header {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .map {
   grid-column: 1 / span 3;
-  margin-top: 3rem;
+  margin-top: -2rem;
 }
 
 label[for="form-extra"], #form-extra {display: none;}

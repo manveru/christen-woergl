@@ -6,8 +6,8 @@
 body {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: 0 66vh 1fr auto;
-  grid-gap: 2em;
+  grid-template-rows: 5rem 66vh 1fr auto;
+  grid-gap: 2rem;
   @media (--large) {
     grid-template-columns: auto 50rem auto;
   }
@@ -18,7 +18,7 @@ header {
 }
 
 .background {
-  margin-top: -2em; /* take care of grid gap */
+  margin-top: -7rem; /* take care of grid gap */
 
   grid-column: 1 / span 3;
   grid-row: 2;
