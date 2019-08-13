@@ -1,0 +1,51 @@
+@import "wing";
+@import "nav";
+
+@custom-media --large (width > 50rem);
+
+body {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 0 66vh 1fr auto;
+  grid-gap: 2em;
+  @media (--large) {
+    grid-template-columns: auto 50rem auto;
+  }
+}
+
+header {
+  grid-row: 1; grid-column: 1 / span 3;
+}
+
+.background {
+  margin-top: -2em; /* take care of grid gap */
+
+  grid-column: 1 / span 3;
+  grid-row: 2;
+
+  background-attachment: fixed;
+  background-position-y: top;
+  background-position-x: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media (--large) {
+    background-size: contain;
+  }
+}
+
+main { grid-row: 3; grid-column: 2; }
+footer { grid-row: 4; grid-column: 1 / span 3; }
+
+main {
+  & blockquote {
+    margin: 0 1em;
+    & p {
+      font-size: 2em;
+      font-weight: 200;
+    }
+    & footer {
+      text-align: right;
+      padding-bottom: 2em;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<!--
+title: Impressum
+route: /impressum.html
+css: impressum.css
+background: true
+language: de
+vers:
+  url: https://www.bibleserver.com/text/SLT/Apostelgeschichte1
+  text: Dieser Jesus, der von euch weg in den Himmel aufgenommen worden ist, wird kommen, wie ihr ihn habt hingehen sehen in den Himmel.
+  stelle: Apostelgeschichte 1,11
+-->
+
+<article>
+  {{ template "vers.tmpl" . }}
+
+  <p class="info">
+    Diese Homepage soll interessierten Menschen die Möglichkeit bieten, sich
+    über Struktur, Aktivitäten und Veranstaltungen der <b>Christen-Wörgl</b> zu
+    informieren.
+  </p>
+
+  <p class="details">
+    Verein zur Förderung christlicher Gemeinschaft, Unterinntal eV.<br />
+    Vereinsregister: ZVR-Zahl 986669332<br />
+    Peter-Anich-Straße 6, 6300 Wörgl, Austria<br />
+    <a href="mailto:{{ .email }}">{{ .email }}</a>
+  </p>
+
+  <p class="responsible">
+    Verantwortliche Administratoren: Michael Fellinger, Mario Schmidt.
+  </p>
+
+  <p class="copyright">
+    Eigentums- und Veröffentlichungsrechte der Bilder: Mario Schmidt.
+  </p>
+</article>

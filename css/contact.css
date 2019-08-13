@@ -1,0 +1,13 @@
+@import "main";
+
+header nav {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.map {
+  grid-column: 1 / span 3;
+  margin-top: 3rem;
+}
+
+label[for="form-extra"], #form-extra {display: none;}
+textarea { min-height: 10em; }

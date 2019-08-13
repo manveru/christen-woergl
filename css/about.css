@@ -1,0 +1,6 @@
+@import "main";
+
+body > .background {
+  background-image: url(/img/about_background.jpg);
+  background-size: cover;
+}

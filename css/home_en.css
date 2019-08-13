@@ -1,0 +1,9 @@
+@import "main";
+
+body .background {
+  background-image: url(/img/home_en_background.jpg);
+  background-position-x: center;
+  @media (--large) {
+    background-size: cover;
+  }
+}
