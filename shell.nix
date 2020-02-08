@@ -1,10 +1,11 @@
-with import ./nix/nixpkgs.nix;
+with import ./nix {};
 pkgs.mkShell {
-  buildInputs = [ yarn yarn2nix.yarn2nix ];
-  node_modules = siteYarnPackages + "/node_modules";
+  buildInputs = [
+    cacert
+    niv
+    euphenix.euphenix
+  ];
   shellHook = ''
     unset preHook
-    ${pkgs.yarn2nix.linkNodeModulesHook}
-    export PATH="$PATH:./node_modules/.bin"
   '';
 }

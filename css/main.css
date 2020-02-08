@@ -15,6 +15,7 @@ body {
 
 header {
   grid-row: 1; grid-column: 1 / span 3;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .background {
@@ -25,7 +26,7 @@ header {
 
   background-attachment: fixed;
   background-position-y: top;
-  background-position-x: left;
+  background-position-x: center;
   background-repeat: no-repeat;
   background-size: cover;
   @media (--large) {
@@ -34,7 +35,7 @@ header {
 }
 
 main { grid-row: 3; grid-column: 2; }
-footer { grid-row: 4; grid-column: 1 / span 3; }
+footer { grid-row: 4; grid-column: 1 / span 3; text-align: center; }
 
 main {
   & blockquote {
@@ -46,6 +47,94 @@ main {
     & footer {
       text-align: right;
       padding-bottom: 2em;
+    }
+  }
+}
+
+body {
+  & .background.home_de {
+    background-image: url(/img/home_de_background.jpg);
+    @media (--large) {
+      background-size: cover;
+    }
+  }
+
+  & .background.about {
+    background-image: url(/img/about_background.jpg);
+    background-size: cover;
+  }
+
+  & .background.impressum {
+    background-image: url(/img/impressum_background.jpg);
+    @media (--large) {
+      background-size: cover;
+    }
+  }
+
+  & .background.home_en {
+    background-image: url(/img/home_en_background.jpg);
+    background-position-x: center;
+    @media (--large) {
+      background-size: cover;
+    }
+  }
+
+  & .background.activities {
+    background-image: url(/img/impressum_background.jpg);
+    @media (--large) {
+      background-size: cover;
+    }
+  }
+}
+
+.map {
+  grid-column: 1 / span 3;
+  margin-top: -2rem;
+}
+
+label[for="form-extra"], #form-extra {display: none;}
+textarea { min-height: 10em; }
+
+@media (--large) {
+  .impressum {
+    & article {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    & blockquote {
+      grid-column: 1 / span 2;
+    }
+
+    & .info {
+      grid-column: 1;
+    }
+
+    & .details, .responsible, .copyright {
+      grid-column: 2;
+    }
+  }
+}
+
+
+@media (--large) {
+  .activities {
+    & article {
+      display: grid;
+      grid-template-columns: 1fr auto;
+    }
+
+    & .title {
+      grid-column: 1 / span 2;
+      text-align: center;
+    }
+
+    & .description {
+      grid-column: 1;
+    }
+
+    & .details {
+      grid-column: 2;
     }
   }
 }

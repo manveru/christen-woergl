@@ -1,8 +1,0 @@
-@import "main";
-
-body .background {
-  background-image: url(/img/home_de_background.jpg);
-  @media (--large) {
-    background-size: cover;
-  }
-}
