@@ -33,11 +33,20 @@ in build {
     "/de/about/index.html" = mkRoute ./templates/about.html "Über uns";
     "/de/contact/index.html" = mkRoute ./templates/contact_de.html "Kontakt";
     "/de/impressum/index.html" = mkRoute ./templates/impressum.html "Impressum";
-    "/de/activities/index.html" = mkRoute ./templates/activities.html "Aktivitäten";
+    "/de/activities/index.html" =
+      mkRoute ./templates/activities.html "Aktivitäten";
     "/en/contact/index.html" = mkRoute ./templates/contact_en.html "Contact";
     "/en/index.html" = mkRoute ./templates/home_en.html "Home";
     "/index.html" = mkRoute ./templates/home_de.html "Home";
   };
 
-  extraParts = [ (euphenix.copyImagesMogrify ./static/img "/img" 2000) ];
+  extraParts = [
+    (euphenix.copyImagesMogrify ./static/img "/img" 2000)
+    (euphenix.copyFile ./static/download/flyer_irland.pdf
+      "/download/flyer_irland.pdf")
+    (euphenix.copyFile ./static/download/flyer_irland2.pdf
+      "/download/flyer_irland2.pdf")
+    (euphenix.copyFile ./static/download/flyer_irland3.pdf
+      "/download/flyer_irland3.pdf")
+  ];
 }

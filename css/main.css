@@ -133,8 +133,12 @@ textarea { min-height: 10em; }
       grid-column: 1;
     }
 
-    & .details {
-      grid-column: 2;
+    & a {
+      padding: 1em;
+      margin: 1em;
+      display: block;
+      text-align: center;
+      background-color: rgba(0,0,0,0.05);
     }
   }
 }
