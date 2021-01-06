@@ -90,6 +90,7 @@ body {
 .map {
   grid-column: 1 / span 3;
   margin-top: -2rem;
+  height: 100%;
 }
 
 label[for="form-extra"], #form-extra {display: none;}
