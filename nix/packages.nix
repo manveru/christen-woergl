@@ -1,3 +1,1 @@
-{ writeScriptBin
-}:
-{ foo = writeScriptBin "foo" "echo foo" ; }
+{ writeScriptBin }: { foo = writeScriptBin "foo" "echo foo"; }

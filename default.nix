@@ -33,8 +33,6 @@ in build {
     "/de/about/index.html" = mkRoute ./templates/about.html "Über uns";
     "/de/contact/index.html" = mkRoute ./templates/contact_de.html "Kontakt";
     "/de/impressum/index.html" = mkRoute ./templates/impressum.html "Impressum";
-    "/de/activities/index.html" =
-      mkRoute ./templates/activities.html "Aktivitäten";
     "/en/contact/index.html" = mkRoute ./templates/contact_en.html "Contact";
     "/en/index.html" = mkRoute ./templates/home_en.html "Home";
     "/index.html" = mkRoute ./templates/home_de.html "Home";

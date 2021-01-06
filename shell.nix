@@ -1,10 +1,6 @@
-with import ./nix {};
+with import ./nix { };
 pkgs.mkShell {
-  buildInputs = [
-    cacert
-    niv
-    euphenix.euphenix
-  ];
+  buildInputs = [ cacert niv euphenix.euphenix ];
   shellHook = ''
     unset preHook
   '';
