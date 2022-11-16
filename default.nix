@@ -6,12 +6,12 @@ let
       super.parseMarkdown.override { flags = { prismjs = true; }; };
   });
 
-  inherit (euphenix.lib) take optionalString hasPrefix;
+  inherit (euphenix.lib) optionalString hasPrefix;
   inherit (euphenix) build mkPostCSS cssTag;
 
   mkRoute = template: title: {
     template = [ ./templates/layout.html template ];
-    variables = rec {
+    variables = {
       inherit title;
       active = route: prefix: optionalString (hasPrefix prefix route) "active";
       liveJS = optionalString (__getEnv "LIVEJS" != "")
@@ -33,6 +33,7 @@ in build {
     "/de/about/index.html" = mkRoute ./templates/about.html "Über uns";
     "/de/contact/index.html" = mkRoute ./templates/contact_de.html "Kontakt";
     "/de/impressum/index.html" = mkRoute ./templates/impressum.html "Impressum";
+    "/de/links/index.html" = mkRoute ./templates/links.html "Links";
     "/en/contact/index.html" = mkRoute ./templates/contact_en.html "Contact";
     "/en/index.html" = mkRoute ./templates/home_en.html "Home";
     "/index.html" = mkRoute ./templates/home_de.html "Home";

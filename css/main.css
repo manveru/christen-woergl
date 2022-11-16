@@ -85,6 +85,13 @@ body {
       background-size: cover;
     }
   }
+
+  & .background.links {
+    background-image: url(/img/links_background.jpg);
+    @media (--large) {
+      background-size: cover;
+    }
+  }
 }
 
 .map {

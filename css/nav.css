@@ -1,4 +1,4 @@
-@custom-media --nav-small (width < 1025px);
+@custom-media --nav-small (width < 69em);
 
 .nav-container {
   width: 100%;
@@ -8,8 +8,9 @@
   }
 
   & nav {
-    max-width: 1720;
+    max-width: 90em;
     margin: 0 auto;
+    padding: 0 1em;
     background: linear-gradient(to right, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 50%,rgba(125,185,232,0) 100%);
 
     display: grid;
@@ -17,6 +18,8 @@
     grid-template-rows: 5rem 1fr;
 
     @media (--nav-small) {
+      padding: 0;
+
       & .burger-menu {
         display: inline-block;
       }
