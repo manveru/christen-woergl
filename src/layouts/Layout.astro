@@ -1,3 +1,90 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+function active(given : string) {
+  let path = Astro.url.pathname.split("/").filter(p => p != "").join("/")
+	return path == given ? "active" : null
+}
+---
+
+<!doctype html>
+<html lang="de" data-scroll="0">
+	<head>
+		<meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Christen Wörgl - Webseite" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Christen Wörgl - {title}</title>
+	</head>
+	<body>
+    <header>
+      <div class="nav-container">
+        <nav>
+          <input type="checkbox" id="nav-toggle" />
+          <label for="nav-toggle" class="burger-menu">☰</label>
+
+          <div class="left-menu">
+            <a class={active("")} href="/">Startseite</a>
+            <a class={active("de/about")} href="/de/about">Über uns</a>
+            <a class={active("de/contact")} href="/de/contact">Kontakt</a>
+            <a class={active("de/links")} href="/de/links">Links</a>
+            <a class={active("de/impressum")} href="/de/impressum">Impressum</a>
+            <a class={active("en")} href="/en">Home (en)</a>
+            <a class={active("en/contact")} href="/en/contact">Contact (en)</a>
+            <a href="https://forum.xn--christen-wrgl-rmb.at/">Login</a>
+          </div>
+
+          <a href="/" class="logo">
+            <h1>Christen-Wörgl</h1>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+		<slot />
+
+    <footer>
+      &copy; Verein zur Förderung christlicher Gemeinschaft, Unterinntal eV.
+    </footer>
+    <script>
+type Params = any; // You can replace 'any' with a specific type if needed
+
+type Frame = number;
+
+const debounce = (fn: (params: Params) => void): ((params: Params) => void) => {
+  let frame: Frame;
+
+  return (params: Params) => {
+    if (frame) { cancelAnimationFrame(frame); }
+
+    frame = requestAnimationFrame(() => {
+      fn(params);
+    });
+  };
+};
+
+const storeScroll = (): void => {
+  (document.documentElement.dataset as DOMStringMap).scroll = String(window.scrollY);
+};
+
+document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+
+storeScroll();
+
+    </script>
+	</body>
+</html>
+<style is:global lang="scss">
+
+$large: 50rem;
+$navSmall: 69rem;
+
 /**
  * Wing v1.0.0-beta
  * Copyright 2016-2018 Kabir Shah
@@ -514,3 +601,281 @@ hr {
 .background-green {
   background-color: #00b30f;
 }
+
+.nav-container {
+  width: 100%;
+  position: absolute;
+  @media (width < $navSmall) {
+    position: fixed;
+  }
+
+  & nav {
+    max-width: 90em;
+    margin: 0 auto;
+    padding: 0 1em;
+    background: linear-gradient(to right, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 50%,rgba(125,185,232,0) 100%);
+
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 5rem 1fr;
+
+
+    & #nav-toggle {
+      display: none;
+    }
+
+    & .burger-menu {
+      display: none;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      font-size: 2rem;
+      height: 100%;
+      line-height: 5rem;
+      color: white;
+      text-shadow: 0 0 2px black;
+      padding: 0 1rem;
+    }
+
+    & .left-menu {
+      grid-column: 1;
+      align-self: center;
+      display: grid;
+      grid-auto-flow: column;
+    }
+
+    & .logo {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+      justify-self: center;
+
+      & h1 {
+        font-size: 2rem;
+        margin: 0;
+        text-shadow: 0 0 2px black;
+      }
+    }
+
+    & a {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: .3s all ease-in-out;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    & .left-menu a {
+      padding: 1em;
+      margin: 0.2em;
+      font-size: 14px;
+      font-weight: 500;
+      text-shadow: 0 0 2px black;
+      text-align: center;
+
+      &.active {
+        border: 1px solid white;
+        box-shadow: 0 0 2px black;
+      }
+    }
+
+    @media (width < $navSmall) {
+      padding: 0;
+
+      & .burger-menu {
+        display: inline-block;
+      }
+
+      & .left-menu {
+        display: grid;
+        grid-auto-flow: row;
+        opacity: 0;
+        transform: translate(0, -200%);
+        transition: .3s all ease-in-out;
+        grid-column: 1 / span 2;
+        height: 0;
+
+        & a {
+          display: none;
+        }
+      }
+
+      & #nav-toggle:checked ~ .left-menu {
+        display: grid;
+        transform: translate(0, 0);
+        opacity: 1;
+        grid-row: 2;
+        justify-content: center;
+        margin: -5rem 0 0 0;
+        padding-top: 5rem;
+        grid-column: 1 / span 2;
+        background: linear-gradient(to right, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 50%,rgba(125,185,232,0) 100%);
+        transition: .3s all ease-in-out;
+        z-index: 10;
+        height: 100vh;
+
+        & a {
+          display: grid;
+          align-content: center;
+        }
+      }
+
+      & #nav-toggle:checked ~ .burger-menu {
+        z-index: 20;
+      }
+
+      & #nav-toggle:checked ~ .logo {
+        z-index: 20;
+      }
+    }
+  }
+}
+
+html[data-scroll="0"] {
+  & .nav-container .logo {
+    opacity: 1;
+    transition: all 1s;
+    transform: translate(0);
+  }
+}
+
+html:not([data-scroll="0"]) {
+  & .nav-container .logo {
+    opacity: 0;
+    transform: translate(0, -200%);
+    transition: all 1s;
+  }
+}
+
+body {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 5rem 66vh 1fr auto;
+  grid-gap: 2rem;
+  @media (width > $large) {
+    grid-template-columns: auto 50rem auto;
+  }
+}
+
+header {
+  grid-row: 1; grid-column: 1 / span 3;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.background {
+  margin-top: -7rem; /* take care of grid gap */
+
+  grid-column: 1 / span 3;
+  grid-row: 2;
+
+  background-attachment: fixed;
+  background-position-y: top;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media (width > $large) {
+    background-size: contain;
+  }
+}
+
+body > footer {
+	padding: 1em;
+}
+
+footer {
+  grid-row: 4;
+	grid-column: 1 / span 3;
+	text-align: center;
+}
+
+main {
+  grid-row: 3;
+	grid-column: 2;
+
+  & blockquote {
+    margin: 0 1em;
+    & p {
+      font-size: 2em;
+      font-weight: 200;
+    }
+    & footer {
+      text-align: right;
+      padding-bottom: 2em;
+    }
+  }
+}
+
+body {
+	.background {
+    background-size: cover;
+  }
+
+
+  & .background.activities {
+    background-image: url(/img/impressum_background.jpg);
+    @media (width > $large) {
+      background-size: cover;
+    }
+  }
+}
+
+.map {
+  grid-column: 1 / span 3;
+  margin-top: -2rem;
+  height: 100%;
+}
+
+label[for="form-extra"], #form-extra {display: none;}
+textarea { min-height: 10em; }
+
+@media (width > $large) {
+  .impressum {
+    & article {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    & blockquote {
+      grid-column: 1 / span 2;
+    }
+
+    & .info {
+      grid-column: 1;
+    }
+
+    & .details, .responsible, .copyright {
+      grid-column: 2;
+    }
+  }
+}
+
+
+@media (width > $large) {
+  .activities {
+    & article {
+      display: grid;
+      grid-template-columns: 1fr auto;
+    }
+
+    & .title {
+      grid-column: 1 / span 2;
+      text-align: center;
+    }
+
+    & .description {
+      grid-column: 1;
+    }
+
+    & a {
+      padding: 1em;
+      margin: 1em;
+      display: block;
+      text-align: center;
+      background-color: rgba(0,0,0,0.05);
+    }
+  }
+}
+</style>

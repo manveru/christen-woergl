@@ -1,0 +1,7 @@
+---
+const { link, stelle } = Astro.props
+---
+<blockquote cite={link}>
+  <p><slot/></p>
+  <footer>— <cite>{stelle}</cite></footer>
+</blockquote>

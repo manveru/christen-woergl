@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Vers from '../../components/Vers.astro'
+---
+
+<Layout title="Impressum">
+  <div class="background"/>
+  <main>
+    <Vers link="https://www.bibleserver.com/text/SLT/Johannes3" stelle="Apostelgeschichte 1,11">
+    Dieser Jesus, der von euch weg in den Himmel aufgenommen worden ist, wird kommen, wie ihr ihn habt hingehen sehen in den Himmel.
+    </Vers>
+
+    <article>
+      <p class="info">
+        Diese Homepage soll interessierten Menschen die Möglichkeit bieten, sich
+        über Struktur, Aktivitäten und Veranstaltungen der <b>Christen-Wörgl</b> zu
+        informieren.
+      </p>
+
+      <p class="details">
+        Verein zur Förderung christlicher Gemeinschaft, Unterinntal eV.<br />
+        Vereinsregister: ZVR-Zahl 986669332<br />
+        Peter-Anich-Straße 6, 6300 Wörgl, Austria<br />
+        <a href="mailto:kontakt@christen-wörgl.at">kontakt@christen-wörgl.at</a>
+      </p>
+
+      <p class="responsible">
+        Verantwortliche Administratoren: Michael Fellinger, Mario Schmidt.
+      </p>
+
+      <p class="copyright">
+        Eigentums- und Veröffentlichungsrechte der Bilder: Mario Schmidt.
+      </p>
+    </article>
+  </main>
+</Layout>
+
+<style>
+.background {
+  background-image: url(/img/impressum_background.jpg);
+}
+
+& article {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+& blockquote {
+  grid-column: 1 / span 2;
+}
+
+& .info {
+  grid-column: 1;
+}
+
+& .details, .responsible, .copyright {
+  grid-column: 2;
+}
+</style>
